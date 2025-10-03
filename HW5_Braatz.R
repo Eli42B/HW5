@@ -9,7 +9,7 @@
 #install.packages("readxl")
 #install.packages('here')
 #install.packages('writexl')
-library(dplyr)
+#install.packages('readr') 
 
 #########################
 # Setting up filepaths 
@@ -138,6 +138,25 @@ data_file_path = here("Output")
 ggsave("mean_weight.png", 
        path = data_file_path)
 
-#Write csv 
-data_file_path = here("Output","fish.csv")
-write.csv(fish, data_file_path, row.names = FALSE) 
+#####################################################################
+#Problem 4 -- reading multiple files at once 
+####################################################################
+
+# List all files 
+all_files <- list.files("Data/Multiple_files", full.names = TRUE)
+all_files
+
+# Read them all into a list
+all_list_csv <- lapply(all_files, read.csv)
+class(all_list_csv)
+View(all_list_csv) #this is a list, not a dataframe 
+
+# Combine into one data frame
+all_data <- dplyr::bind_rows(all_list)
+
+
+
+
+
+
+
