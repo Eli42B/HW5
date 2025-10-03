@@ -8,7 +8,7 @@
 #install.packages("dplyr")
 #install.packages("readxl")
 #install.packages('here')
-
+#install.packages('writexl')
 
 #########################
 # Setting up filepaths 
@@ -58,6 +58,18 @@ head(fish_rds, 5)
 path = "C:/Users/Elizabeth/Documents/School/2025 Semester 1/ZOO800 Stats/Homework Assignments/HW5/Data"
 newfolder = "Output"
 #dir.create(file.path(dirname(path), newfolder)) #Commenting this out so we don't keep trying to make new output folders 
+
+#Write our files
+
+#Write csv 
+data_file_path = here("Output","fish.csv")
+write.csv(fish, data_file_path, row.names = FALSE) 
+
+#write xlsx 
+data_file_path = here("Output","fish.xlsx")
+library(readxl)
+library(writexl)
+write_xlsx(fish, data_file_path)
 
 
 #2. Compare file sizes using file.info() for the three files containing the same data.
