@@ -71,11 +71,18 @@ library(readxl)
 library(writexl)
 write_xlsx(fish, data_file_path)
 
+#write rds 
+library(readr)
+data_file_path = here("Output","fish.rds")
+write_rds(fish, data_file_path)
 
 #2. Compare file sizes using file.info() for the three files containing the same data.
+
+file.info(c("Output/fish.csv", "Output/fish.xlsx", "Output/fish.rds"))$size
+
 #3. Write a short note: which format is best for (a) sharing, (b) compact storage?
 
-
+# If the person receiving the data has R, I imagine that rds is the best way to share because it preserves the data structure, so they can just read it right into R and be where you were. If the person does not have R, I imagine that sharing in xlsx is the best format because Excel is a very nicely formatted and pretty universal program. However, if you need compact storage, it looks like csv is the best format because it had the smallest size (12,000 vs 17,000 with rds). 
 
 
 
